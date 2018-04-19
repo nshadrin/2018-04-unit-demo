@@ -1,0 +1,80 @@
+{
+    "listeners": {
+        "*:8081": { "application": "myphp" },
+        "*:8082": { "application": "mypython" },
+        "*:8083": { "application": "myperl" },
+        "*:8084": { "application": "myruby" },
+        "*:8085": { "application": "mygo" }
+    },
+
+    "applications": {
+        "myphp": {
+            "type": "php",
+            "processes": {
+                "max": 10,
+                "spare": 2
+            },
+            "root": "/srv/demo/php",
+            "user": "php",
+            "group": "php",
+            "script": "index.php",
+            "limits": {
+                "timeout": 10,
+                "requests": 100
+            }
+        },
+        "mypython": {
+            "type": "python",
+            "processes": {
+                "max": 10,
+                "spare": 2
+            },
+            "path": "/srv/demo/python",
+            "user": "php",
+            "group": "php",
+            "module": "wsgi",
+            "limits": {
+                "timeout": 10,
+                "requests": 100
+            }
+        },
+        "myperl": {
+            "type": "perl",
+            "processes": {
+                "max": 10,
+                "spare": 2
+            },
+            "working_directory": "/srv/demo/perl",
+            "user": "php",
+            "group": "php",
+            "script": "app.pl",
+            "limits": {
+                "timeout": 10,
+                "requests": 100
+            }
+        },
+        "myruby": {
+            "type": "ruby",
+            "user": "php",
+            "group": "php",
+            "script": "/srv/demo/ruby/app.ru",
+            "limits": {
+                "timeout": 10,
+                "requests": 100
+            }
+        },
+        "mygo": {
+            "type": "go",
+            "user": "php",
+            "group": "php",
+            "working_directory": "/srv/demo/go",
+            "executable": "hello",
+            "limits": {
+                "timeout": 10,
+                "requests": 100
+            }
+        }
+
+
+    }
+}
